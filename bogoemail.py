@@ -8,15 +8,15 @@ with open ("fans.txt", "r") as file:
 
 def send(data, unsorted, elapsed, startdate, enddate, lucky_numbers):
     days = int(elapsed.days)
-    hours = int(elapsed.seconds/(60**2))
-    minutes = int(elapsed.seconds/(60))
+    hours = int(elapsed.seconds/(60**2)%24)
+    minutes = int(elapsed.seconds/(60)%60)
     seconds = int(elapsed.seconds%60)
     msg = EmailMessage()
     msg['Subject'] = f'Bogosortbot has finished sorting a {len(data)} number data set [{days}:{hours}:{minutes}:{seconds}]'
     msg.set_content(f"""
     Unsorted Data Set:  {unsorted}
-    Sorted Data Set:    {data}
-    Data Set Length:    {len(data)} numbers
+    Sorted Data Set:     {data}
+    Data Set Length:     {len(data)} numbers
     Bogosortbot's Work Time:
         {days} days,
         {hours} hours,
